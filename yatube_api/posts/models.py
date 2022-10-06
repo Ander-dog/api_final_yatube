@@ -77,5 +77,5 @@ class Follow(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=['user', 'following'],
-                name="unique subscription"),
+                name='unique subscription'),
         ]

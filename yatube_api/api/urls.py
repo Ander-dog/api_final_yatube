@@ -1,6 +1,5 @@
 from django.urls import include, path
 from rest_framework import routers
-from rest_framework_simplejwt import views
 
 from .views import CommentViewSet, FollowViewSet, GroupViewSet, PostViewSet
 
@@ -19,19 +18,5 @@ router.register(r'follow', FollowViewSet, basename='follow')
 
 urlpatterns = [
     path(f'{version}/', include(router.urls)),
-    path(
-        f'{version}/jwt/create/',
-        views.TokenObtainPairView.as_view(),
-        name='token_create'
-    ),
-    path(
-        f'{version}/jwt/refresh/',
-        views.TokenRefreshView.as_view(),
-        name='token_refresh'
-    ),
-    path(
-        f'{version}/jwt/verify/',
-        views.TokenVerifyView.as_view(),
-        name='token_verify'
-    ),
+    path(f'{version}/', include('djoser.urls.jwt'))
 ]
